@@ -35,12 +35,12 @@ title: Pull Spreadsheet
     // Grab the token from cookie
     $oAuthToken = Cookies.get('token');
 
-    key = "14OsbrDkjnr67J2TMzYO0EiFrixdYbf-UiMJ-HYNJhMI";
+    key = "1lIZeueadG24egWy1imSU2iBk3ASj0-X83rUU1zJ3RlU";
 
     $(document).ready( function() {
       Tabletop.init( { key: key,
                        callback: showInfo,
-                       wanted: [ "Products" ],
+                       wanted: [ "QUESTION_BANK" ],
                        debug: true } )
     })
 
@@ -54,22 +54,22 @@ title: Pull Spreadsheet
         $("#table_info").append("<p>" + sheet.name + " has " + sheet.column_names.join(", ") + "</p>");
       });
 
-      $product = tabletop.sheets("Products").all();
+      $product = tabletop.sheets("QUESTION_BANK").all();
 
       $count = 0;
       $total_count = $product.length;
-      $.each( tabletop.sheets("Products").all(), function(i, service) {
+      $.each( tabletop.sheets("QUESTION_BANK").all(), function(i, service) {
 
-          $id = service['ID'];
-          $title = service['Title'];
-          $description = service['Description'];
-          $price = service['Price'];
+          $id = service['QUESTION_CODE'];
+          $title = service['QUESTION'];
+          $description = service['ANSWERS'];
+          $price = service['CORRECT'];
 
           $p = {};
-          $p['id'] = $id;
-          $p['title'] = $title;
-          $p['description'] = $description;
-          $p['price'] = $price;
+          $p['QUESTION_CODE'] = $id;
+          $p['QUESTION'] = $title;
+          $p['ANSWERS'] = $description;
+          $p['CORRECT'] = $price;
           $products.push($p);
           //beautify(jsonStr);
 
